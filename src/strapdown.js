@@ -66,6 +66,10 @@
   var theme = markdownEl.getAttribute('theme') || 'bootstrap';
   theme = theme.toLowerCase();
 
+  // Check if should display navbar
+  var navbar = markdownEl.getAttribute('navbar') || 'true';
+  navbar = (navbar == 'true');
+
   // Stylesheets
   var linkEl = document.createElement('link');
   linkEl.href = originBase + '/themes/'+theme+'.min.css';
@@ -97,7 +101,7 @@
   // Insert navbar if there's none
   var newNode = document.createElement('div');
   newNode.className = 'navbar navbar-fixed-top';
-  if (!navbarEl && titleEl) {
+  if (navbar && !navbarEl && titleEl) {
     newNode.innerHTML = '<div class="navbar-inner"> <div class="container"> <div id="headline" class="brand"> </div> </div> </div>';
     document.body.insertBefore(newNode, document.body.firstChild);
     var title = titleEl.innerHTML;
